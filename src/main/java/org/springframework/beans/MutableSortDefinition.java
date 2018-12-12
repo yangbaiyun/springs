@@ -3,6 +3,7 @@ package org.springframework.beans;
 import java.io.Serializable;
 
 /**
+ * 排序属性实现类
  * @author chl
  * @date 2018/12/11 20:32
  */
