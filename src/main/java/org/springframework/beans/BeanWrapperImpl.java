@@ -171,6 +171,15 @@ public class BeanWrapperImpl implements BeanWrapper {
 
     @Override
     public PropertyDescriptor getPropertyDescriptor(String propertyName) throws Exception {
+
+        if(propertyName==null)
+            throw new RuntimeException("属性不存在");
+
+        if(isNestedProperty(propertyName))
+        {
+
+        }
+
         return null;
     }
 
@@ -180,8 +189,18 @@ public class BeanWrapperImpl implements BeanWrapper {
     }
 
     @Override
-    public boolean isWritableProperty(String propertyName) {
-        return false;
+    public boolean isWritableProperty(String propertyName)  {
+
+        if(propertyName==null)
+            throw new RuntimeException("属性不存在");
+        try
+        {
+            return getPropertyDescriptor(propertyName).getWriteMethod()!=null;
+        }catch (Exception e)
+        {
+            return false;
+        }
+
     }
 
     @Override
