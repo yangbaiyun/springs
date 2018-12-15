@@ -136,6 +136,7 @@ public class BeanWrapperImpl implements BeanWrapper {
                 BeanWrapper nestedBw = getBeanWrapperForPropertyPath(pv.getName());
                 nestedBw.setPropertyValue(new PropertyValue(getFinalPath(pv.getName()), pv.getValue()));
                 return;
+
             }
             catch (Exception ex) {
                 throw ex;
