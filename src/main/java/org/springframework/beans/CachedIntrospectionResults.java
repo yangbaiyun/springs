@@ -2,6 +2,7 @@ package org.springframework.beans;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.exceptions.BeansException;
 
 import java.beans.*;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class CachedIntrospectionResults {
 
     private static HashMap classCache = new HashMap();
 
-    protected static CachedIntrospectionResults forClass(Class clazz) throws Exception {
+    protected static CachedIntrospectionResults forClass(Class clazz) throws BeansException {
         Object o = classCache.get(clazz);
         if (o == null) {
             // Can throw BeansException
@@ -42,7 +43,7 @@ public class CachedIntrospectionResults {
     private HashMap methodDescriptorMap;
 
 
-    private CachedIntrospectionResults(Class clazz) throws Exception {
+    private CachedIntrospectionResults(Class clazz) throws BeansException {
         try {
 
             this.beanInfo = Introspector.getBeanInfo(clazz);
@@ -81,15 +82,15 @@ public class CachedIntrospectionResults {
         return beanInfo.getBeanDescriptor().getBeanClass();
     }
 
-    protected PropertyDescriptor getPropertyDescriptor(String propertyName) throws Exception {
+    protected PropertyDescriptor getPropertyDescriptor(String propertyName) throws BeansException {
         PropertyDescriptor pd = (PropertyDescriptor) this.propertyDescriptorMap.get(propertyName);
         if (pd == null) {
-           throw  new RuntimeException();
+            throw  new RuntimeException();
         }
         return pd;
     }
 
-    protected MethodDescriptor getMethodDescriptor(String methodName) throws Exception {
+    protected MethodDescriptor getMethodDescriptor(String methodName) throws BeansException {
         MethodDescriptor md = (MethodDescriptor) this.methodDescriptorMap.get(methodName);
         if (md == null) {
             throw  new RuntimeException();

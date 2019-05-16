@@ -1,5 +1,7 @@
 package org.springframework.beans;
 
+import org.springframework.exceptions.BeansException;
+
 /**
  * @author chl
  * @date 2018/12/13 20:10
@@ -8,7 +10,7 @@ public abstract class BeanUtils {
 
 
 
-    public static Object instantiateClass(Class clazz) throws Exception {
+    public static Object instantiateClass(Class clazz) throws BeansException {
         try {
             return clazz.newInstance();
         }
