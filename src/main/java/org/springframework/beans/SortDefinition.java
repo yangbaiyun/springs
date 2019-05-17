@@ -12,6 +12,7 @@ public interface SortDefinition {
 
     boolean isIgnoreCase();
 
+
     boolean isAscending();
 
 
